@@ -39,26 +39,21 @@ class Solution
     {
         // add your code here
         Stack<Character>st = new Stack<>();
-        for(int i=0;i<x.length();i++)
-        {
-            char c = x.charAt(i);
-            if(c == '(' || c == '{' || c == '[')
-            st.push(c);
-            else{
-                if((c==')'||c=='}'||c==']')&&st.size()==0)
-                return false;
-                if(c == ')' && st.peek() == '(')
+        for(int i = 0; i < x.length(); i++){
+            char ch = x.charAt(i);
+            if(ch == '(' || ch == '[' || ch == '{'){
+                st.push(ch);
+            }else if(ch == ')' && !st.isEmpty() && st.peek() == '('){
                 st.pop();
-                else if(c=='}' &&st.peek()=='{')
+            }else if(ch == ']' && !st.isEmpty() && st.peek() == '['){
                 st.pop();
-                else if(c==']' && st.peek() == '[')
+            }else if(ch == '}' && !st.isEmpty() && st.peek() == '{'){
                 st.pop();
-                else
+            }else{
                 return false;
             }
+            
         }
-        if(st.size()==0)
-            return true;
-        return false;
+        return st.isEmpty();
     }
 }
