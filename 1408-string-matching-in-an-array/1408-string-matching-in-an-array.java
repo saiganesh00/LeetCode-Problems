@@ -1,17 +1,13 @@
 class Solution {
     public List<String> stringMatching(String[] words) {
-        Set<String> result = new HashSet<>();
-        for (int i = 0; i < words.length; i++) {
-            for (int j = i + 1; j < words.length; j++) {
-                if (words[i].contains(words[j])) {
-                    result.add(words[j]);
-                } else if (words[j].contains(words[i])) {
-                    result.add(words[i]);
-                }
+        String str = String.join(" ", words);
+        List<String> res = new ArrayList<>();
+        for(int i = 0; i < words.length; i++){
+            if(str.indexOf(words[i]) != str.lastIndexOf(words[i])){
+                res.add(words[i]);
             }
         }
-
-        return new ArrayList<>(result);
+        return res;
         
     }
 }
